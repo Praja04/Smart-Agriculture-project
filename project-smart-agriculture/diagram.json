@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "chip-soil-sensor", "id": "chip1", "top": 260.22, "left": 177.6, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -47.7, "left": -139.8, "attrs": {} },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd1",
+      "top": -12.8,
+      "left": 245.6,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -56.84, "left": 192, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": -57.6, "left": 220.2, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -143.8, "left": 0, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": -191.24, "left": -28.8, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": -192, "left": -0.6, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -186, "left": 176.6, "attrs": { "color": "red" } },
+    { "type": "wokwi-vcc", "id": "vcc3", "top": -181.64, "left": 220.8, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd3", "top": -67.2, "left": 124.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "lcd1:VCC", "vcc1:VCC", "red", [ "h0" ] ],
+    [ "lcd1:GND", "gnd1:GND", "black", [ "h-76.8", "v-86.4", "h57.6" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h-76.8", "v38.6" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h0" ] ],
+    [ "relay1:IN", "esp:18", "green", [ "h-28.8", "v86.2", "h163.2", "v28.8" ] ],
+    [ "relay1:VCC", "vcc2:VCC", "red", [ "h-19.2", "v-9.6" ] ],
+    [ "relay1:GND", "gnd2:GND", "black", [ "h-48", "v-86.8", "h57.6" ] ],
+    [ "relay1:COM", "led1:C", "green", [ "h0" ] ],
+    [ "led1:A", "vcc3:VCC", "green", [ "v9.6", "h28.8" ] ],
+    [ "relay1:NO", "gnd3:GND", "green", [ "h0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v86.4", "h96", "v0", "h-9.6" ] ],
+    [ "dht1:SDA", "esp:15", "green", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0", "h115.2", "v-38.4" ] ],
+    [ "chip1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "chip1:VCC", "esp:3V3", "red", [ "h-230.4", "v-172.8" ] ],
+    [ "chip1:A0", "esp:34", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
